@@ -1,23 +1,50 @@
-function carregar() {
-    const msg = window.document.getElementById('msg');
-    const img = window.document.getElementById('imagem');
+function verificar() {
     var data = new Date();
-    var hora = data.getHours();
-    msg.innerHTML = `Agora são ${hora} horas.`;
-
-    if (hora >= 0 && hora < 12) {
-        //Bom dia
-        img.src = '/img/manha.png';
-        document.body.style.background = '#f4ce73';
-    } else if (hora >= 12 && hora < 18) {
-        //Boa Tarde
-        img.src = '/img/tarde.png';
-        document.body.style.background = '#a47553';
-
+    var ano = data.getFullYear();
+    var fano = document.getElementById('txtano');
+    var res = document.querySelector('div#res');
+    if (fano.value.length == 0 || Number(fano.value) > ano) {
+        alert(' [ERRO]Verifique os dados e tente novamente');
     } else {
-        //Boa Noite
-        img.src = 'img/noite.png';
-        document.body.style.background = '#050917';
-
+        mudaImagem()
     }
+}
+
+function mudaImagem() {
+    let data = new Date();
+    let ano = data.getFullYear();
+    let fano = document.getElementById('txtano');
+    let res = document.querySelector('div#res');
+    let fsex = document.querySelectorAll('input[name="radsex"]');
+    let idade = fano.value;
+    let anoNascimento = ano - idade;
+    let img = document.createElement('img');
+    switch (fsex[0].checked == true) {
+        case idade >= 50:
+            img.setAttribute('src', 'idoso-masculino.png');
+            break;
+        case idade > 21:
+            img.setAttribute('src', 'adulto-masculino.png');
+            break;
+        case idade >= 10 && idade < 21:
+            img.setAttribute('src', 'jovem-masculino.png');
+            break;
+        default:
+        img.setAttribute('src', 'bebe-feminina.png');
+    }
+    switch (fsex[1].checked == true) {
+        case idade >= 50:
+            img.setAttribute('src', 'idoso-feminino.png');
+            break;
+        case idade > 21:
+            img.setAttribute('src', 'adulto-feminina.png');
+            break;
+        case idade >= 10 && idade < 21:
+            img.setAttribute('src', 'jovem-feminina.png');
+            break;
+        default:
+        img.setAttribute('src', 'bebe-feminina.png');
+    }
+    res.innerHTML = `Nascido(a) em ${anoNascimento}.`
+    res.appendChild(img);
 }
