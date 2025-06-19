@@ -21,6 +21,6 @@ Feito com o objetivo de consolidar conhecimentos em manipulação de DOM, evento
 
 ## 🚀 Como ver o projeto
 
-https://horariodinamico.netlify.app/
+
 ```bash
-git clone https://github.com/seuusuario/nome-do-repo.git
+https://horariodinamico.netlify.app/
